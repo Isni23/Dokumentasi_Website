@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem TIK POLRI - Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        min-height: 100vh;
+      }
+
+      .login-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-active {
+        background-color: #3b82f6;
+        color: white;
+        box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+      }
+
+      .form-input:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      }
+
+      .btn-primary {
+        background: linear-gradient(to right, #3b82f6, #1d4ed8);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+      }
+
+      .btn-admin {
+        background: linear-gradient(to right, #10b981, #059669);
+      }
+
+      .btn-admin:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+      }
+
+      .page {
+        transition: all 0.3s ease;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .active {
+        display: block;
+      }
+
+      .logo {
+        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-md">
+      <!-- Logo dan Judul -->
+      <div class="text-center mb-8">
+        <div class="flex justify-center items-center mb-4">
+          <div
+            class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg"
+          >
+            <i
+              class="fas fa-shield-alt text-2xl"
+              style="
+                background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              "
+            ></i>
+          </div>
+        </div>
+        <h1 class="text-3xl font-bold logo">TIK POLRI</h1>
+        <p class="text-white mt-2">Sistem Dokumentasi Kegiatan</p>
+      </div>
+
+      <!-- Navigasi -->
+      <div class="flex justify-center mb-8">
+        <div class="bg-white rounded-full p-1 shadow-lg flex">
+          <button
+            id="nav-login"
+            class="nav-btn px-5 py-2.5 rounded-full font-medium transition-all nav-active"
+          >
+            <i class="fas fa-sign-in-alt mr-2"></i>Masuk
+          </button>
+          <button
+            id="nav-register"
+            class="nav-btn px-5 py-2.5 rounded-full font-medium transition-all"
+          >
+            <i class="fas fa-user-plus mr-2"></i>Daftar
+          </button>
+          <button
+            id="nav-admin"
+            class="nav-btn px-5 py-2.5 rounded-full font-medium transition-all"
+          >
+            <i class="fas fa-user-shield mr-2"></i>Admin
+          </button>
+        </div>
+      </div>
+
+      <!-- Kartu Login -->
+      <div class="login-card rounded-2xl p-8">
+        <!-- Halaman Login User -->
+        <div id="login-page" class="page active">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-800">Masuk ke Akun</h2>
+            <p class="text-gray-600 mt-2">Gunakan kredensial TIK_POLRI Anda</p>
+          </div>
+
+          <form id="login-form">
+            <div class="mb-5">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-user mr-2"></i>Username atau Email
+              </label>
+              <input
+                type="text"
+                class="w-full px-4 py-3.5 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Masukkan username atau email"
+                required
+              />
+            </div>
+
+            <div class="mb-5">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-lock mr-2"></i>Password
+              </label>
+              <input
+                type="password"
+                class="w-full px-4 py-3.5 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Masukkan password"
+                required
+              />
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="remember"
+                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label for="remember" class="ml-2 block text-sm text-gray-700"
+                  >Ingat saya</label
+                >
+              </div>
+              <a
+                href="#"
+                class="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                >Lupa Password?</a
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="w-full btn-primary text-white py-3.5 px-4 rounded-xl font-medium shadow-md"
+            >
+              <i class="fas fa-sign-in-alt mr-2"></i>Masuk
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <p class="text-gray-600">
+              Belum punya akun?
+              <a
+                href="#"
+                class="text-blue-600 font-medium hover:text-blue-800 register-link"
+                >Daftar di sini</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <!-- Halaman Daftar -->
+        <div id="register-page" class="page hidden">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-800">Daftar Akun Baru</h2>
+            <p class="text-gray-600 mt-2">Buat akun TIK_POLRI baru</p>
+          </div>
+
+          <form id="register-form">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-user mr-2"></i>Nama Lengkap
+              </label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Masukkan nama lengkap"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-id-card mr-2"></i>NRP / NIP
+              </label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Masukkan NRP atau NIP"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-envelope mr-2"></i>Email
+              </label>
+              <input
+                type="email"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Masukkan email"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-at mr-2"></i>Username
+              </label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Buat username"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-key mr-2"></i>Password
+              </label>
+              <input
+                type="password"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Buat password"
+                required
+              />
+            </div>
+
+            <div class="mb-6">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-key mr-2"></i>Konfirmasi Password
+              </label>
+              <input
+                type="password"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Ulangi password"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full btn-primary text-white py-3.5 px-4 rounded-xl font-medium shadow-md"
+            >
+              <i class="fas fa-user-plus mr-2"></i>Daftar
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <p class="text-gray-600">
+              Sudah punya akun?
+              <a
+                href="#"
+                class="text-blue-600 font-medium hover:text-blue-800 login-link"
+                >Masuk di sini</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <!-- Halaman Login Admin -->
+        <div id="admin-page" class="page hidden">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-800">Login Admin</h2>
+            <p class="text-gray-600 mt-2">
+              Akses sistem pengelolaan dokumentasi
+            </p>
+          </div>
+
+          <form id="admin-form">
+            <div class="mb-5">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-user-shield mr-2"></i>Username / Email
+              </label>
+              <input
+                type="text"
+                class="w-full px-4 py-3.5 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Masukkan username atau email admin"
+                required
+              />
+            </div>
+
+            <div class="mb-6">
+              <label class="block text-gray-700 text-sm font-medium mb-2">
+                <i class="fas fa-lock mr-2"></i>Password
+              </label>
+              <input
+                type="password"
+                class="w-full px-4 py-3.5 border border-gray-300 rounded-xl form-input focus:outline-none focus:border-blue-500"
+                placeholder="Masukkan password admin"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full btn-admin text-white py-3.5 px-4 rounded-xl font-medium shadow-md"
+            >
+              <i class="fas fa-sign-in-alt mr-2"></i>Masuk sebagai Admin
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <p class="text-gray-600">
+              Kembali ke
+              <a
+                href="#"
+                class="text-blue-600 font-medium hover:text-blue-800 login-link"
+                >login user</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-8 text-white text-sm">
+        <p>&copy; 2023 TIK POLRI. Semua hak dilindungi.</p>
+        <p class="mt-1">Sistem Dokumentasi Kegiatan</p>
+      </div>
+    </div>
+
+    <script>
+      // Inisialisasi setelah halaman dimuat
+      document.addEventListener("DOMContentLoaded", function () {
+        // Element references
+        const navButtons = document.querySelectorAll(".nav-btn");
+        const pages = document.querySelectorAll(".page");
+
+        // Fungsi untuk menampilkan halaman tertentu
+        function showPage(pageId) {
+          // Sembunyikan semua halaman
+          pages.forEach((page) => {
+            page.classList.remove("active");
+            page.classList.add("hidden");
+          });
+
+          // Tampilkan halaman yang dipilih
+          const targetPage = document.getElementById(`${pageId}-page`);
+          if (targetPage) {
+            targetPage.classList.remove("hidden");
+            targetPage.classList.add("active");
+          }
+
+          // Update status navigasi
+          navButtons.forEach((btn) => {
+            btn.classList.remove("nav-active");
+          });
+
+          const activeNav = document.getElementById(`nav-${pageId}`);
+          if (activeNav) {
+            activeNav.classList.add("nav-active");
+          }
+        }
+
+        // Event listener untuk tombol navigasi
+        navButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const target = this.id.replace("nav-", "");
+            showPage(target);
+          });
+        });
+
+        // Event listener untuk link di dalam form
+        document.querySelectorAll(".register-link").forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            showPage("register");
+          });
+        });
+
+        document.querySelectorAll(".login-link").forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            showPage("login");
+          });
+        });
+
+        // Handle form submission
+        document
+          .getElementById("login-form")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            // Simulasi login berhasil
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Memproses...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+              alert("Login berhasil! Selamat datang di sistem TIK POLRI.");
+              submitBtn.innerHTML = originalText;
+              submitBtn.disabled = false;
+
+              // Di sini biasanya akan ada redirect ke dashboard
+              // window.location.href = 'dashboard.html';
+            }, 1500);
+          });
+
+        document
+          .getElementById("register-form")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            // Simulasi pendaftaran berhasil
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Mendaftarkan...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+              alert("Pendaftaran berhasil! Silakan login dengan akun Anda.");
+              submitBtn.innerHTML = originalText;
+              submitBtn.disabled = false;
+              showPage("login");
+            }, 1500);
+          });
+
+        document
+          .getElementById("admin-form")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            // Simulasi login admin berhasil
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Memverifikasi...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+              alert("Login admin berhasil! Mengarahkan ke dashboard admin.");
+              submitBtn.innerHTML = originalText;
+              submitBtn.disabled = false;
+
+              // Di sini biasanya akan ada redirect ke dashboard admin
+              // window.location.href = 'admin-dashboard.html';
+            }, 1500);
+          });
+
+        // Inisialisasi halaman pertama
+        showPage("login");
+      });
+    </script>
+  </body>
+</html>
